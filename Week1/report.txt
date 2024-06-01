@@ -1,13 +1,24 @@
 Report Encode solidity Bootcamp Q2 2024 Week 1 :
 
 
-As owner :
+Deploying contract as As owner :
+
+
 Contract address on Sepolia :  0x7a191dee4Ca84a9601FA01E944921c8D2A8ac9F3
+Transaction : https://sepolia.etherscan.io/tx/0xb8dcdf36a1e6f112c98f938b410b30bd2426799f58be5716a700b56ecd72979f
+
+
+Functions calls :
 
 setText("saad") --> Hash --> 0xbdebbfac335f80bfe0e88ccc7c2e9c50a72e3bf4bfa1e5e6c3ab1f33beac8427 
+Transaction : https://sepolia.etherscan.io/tx/0xbdebbfac335f80bfe0e88ccc7c2e9c50a72e3bf4bfa1e5e6c3ab1f33beac8427
+
 transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x1178925b343358d490996f44d748215a0ea3329af1b2feb2440544998cbd7399 
+Transaction : https://sepolia.etherscan.io/tx/0x1178925b343358d490996f44d748215a0ea3329af1b2feb2440544998cbd7399
 
 as not owner :
 setText("saad") 	--> Hash --> 0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89 	--> Revert Fail with error 'Caller is not the owner' 
-transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e --> Revert Fail with error 'Caller is not the owner' 
+Transaction : https://sepolia.etherscan.io/tx/0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89
 
+transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e --> Revert Fail with error 'Caller is not the owner' 
+Transaction : https://sepolia.etherscan.io/tx/0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e
