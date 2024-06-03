@@ -22,3 +22,22 @@ Transaction : https://sepolia.etherscan.io/tx/0x606b606fd6dd8f412e980c10587c5879
 
 transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e --> Revert Fail with error 'Caller is not the owner' 
 Transaction : https://sepolia.etherscan.io/tx/0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e .
+
+
+Chris :
+Additional 2nd attempted transferOwnership as not owner
+transferOwnership(0x7a191dee4Ca84a9601FA01E944921c8D2A8ac9F3)
+Revert Fail with error 'Caller is not the owner':
+tx: 0x9f511e5bf0a2ed6f92c273d2fb86e05c9ad7185fe8110134db88dd7b368080ff
+
+Additional 3rd attempted transferOwnership as not owner
+transferOwnership(0x7a191dee4Ca84a9601FA01E944921c8D2A8ac9F3)
+Revert Fail with error 'Caller is not the owner':
+tx: 0xd9f200f36dc74794a2f05219244c57b02a9c2afaec90d56244850f4ebe5d5bf
+
+Additional attempted setText as not owner:
+setText("late Chris")
+Revert Fail with error 'Caller is not the owner' 
+tx: 0x9f511e5bf0a2ed6f92c273d2fb86e05c9ad7185fe8110134db88dd7b368080ff
+[15:30]
+Next time I think we need to submit the contract code in our group repo.
