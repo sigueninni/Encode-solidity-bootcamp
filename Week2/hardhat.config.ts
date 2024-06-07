@@ -1,23 +1,19 @@
-import { createPublicClient, http } from "viem";
-import { sepolia } from "viem/chains";
+import type { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox-viem";
+
 import * as dotenv from "dotenv";
 dotenv.config();
 
 const providerApiKey = process.env.ALCHEMY_API_KEY || "";
+const deployerPrivateKey = process.env.PRIVATE_KEY || "";
 
-async function main() {
-  const proposals = process.argv.slice(2);
-  if (!proposals || proposals.length < 1)
-    throw new Error("Proposals not provided");
-  const publicClient = createPublicClient({
-    chain: sepolia,
-    transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
-  });
-  const blockNumber = await publicClient.getBlockNumber();
-  console.log("Last block number:", blockNumber);
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const config: HardhatUserConfig = {
+  solidity: "0.8.24",
+  networks: {
+    sepolia: {
+      url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
+      accounts: [deployerPrivateKey],
+    }
+  },
+};
+export default config;

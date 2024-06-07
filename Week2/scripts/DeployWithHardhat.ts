@@ -1,8 +1,10 @@
 import { viem } from "hardhat";
 import { toHex, hexToString, formatEther } from "viem";
 
-
 const PROPOSALS = ["Proposal 1", "Proposal 2", "Proposal 3"];
+
+const providerApiKey = process.env.ALCHEMY_API_KEY || "";
+const deployerPrivateKey = process.env.PRIVATE_KEY || "";
 
 async function main() {
 
@@ -19,6 +21,7 @@ async function main() {
         formatEther(balance),
         deployer.chain.nativeCurrency.symbol
     );
+
 
 
     console.log("Proposals: ");
