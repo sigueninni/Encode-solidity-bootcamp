@@ -14,6 +14,16 @@ async function deployContract() {
     return { publicClient, deployer, otherAccount, ballotContract };
 }
 
+async function deployContractStateDelegate() {
+    const publicClient = await viem.getPublicClient();
+    const [chairpersonAccount, voterAccount, delegatedAccount] = await viem.getWalletClients();
+    const ballotContract = await viem.deployContract("Ballot", [
+        PROPOSALS.map((prop) => toHex(prop, { size: 32 })),
+    ]);
+
+    return { publicClient, chairpersonAccount, voterAccount, delegatedAccount, ballotContract };
+}
+
 describe("Ballot", async () => {
     describe("when the contract is deployed", async () => {
         it("has the provided proposals", async () => {
@@ -69,9 +79,37 @@ describe("Ballot", async () => {
     });
 
     describe("when the voter interacts with the delegate function in the contract", async () => {
-        // TODO
         it("should transfer voting power", async () => {
-            throw Error("Not implemented");
+            const { publicClient, chairpersonAccount, voterAccount, delegatedAccount, ballotContract } = await loadFixture(deployContractStateDelegate);
+            //chairpersonAccount add voterAccount as voter
+            const txHash = await ballotContract.write.giveRightToVote([
+                voterAccount.account.address,
+            ]);
+            const receipt = await publicClient.getTransactionReceipt({ hash: txHash });
+            expect(receipt.status).to.equal("success");
+            //check if voter has now voting weight
+            const voter = await ballotContract.read.voters([voterAccount.account.address]);
+            expect(voter[0]).to.eq(1n);
+            //check that delegatedVoter has no voting weight before delegation
+            let delegated = await ballotContract.read.voters([delegatedAccount.account.address]);
+            expect(delegated[0]).to.eq(0n);
+            //chairpersonAccount add delegated as voter
+            const txHashAddDelegated = await ballotContract.write.giveRightToVote([
+                delegatedAccount.account.address,]);
+            const receiptAddDelegated = await publicClient.getTransactionReceipt({ hash: txHashAddDelegated });
+            expect(receiptAddDelegated.status).to.equal("success");
+            //check if voter has now voting weight
+            delegated = await ballotContract.read.voters([delegatedAccount.account.address]);
+            expect(delegated[0]).to.eq(1n);
+            //Delegate now from Voter to delegatedAccount
+            const txHashDelegation = await ballotContract.write.delegate([delegatedAccount.account.address], {
+                account: voterAccount.account.address
+            });
+            const receiptDelegation = await publicClient.getTransactionReceipt({ hash: txHashDelegation });
+            expect(receiptDelegation.status).to.equal("success");
+            //check if delegatedVoter has now voting weight eq 2
+            delegated = await ballotContract.read.voters([delegatedAccount.account.address]);
+            expect(delegated[0]).to.eq(2n);
         });
     });
 

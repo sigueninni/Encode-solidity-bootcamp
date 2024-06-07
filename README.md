@@ -16,3 +16,6 @@ Encode-solidity-bootcamp Group5 submissions
 
 ## Week 1
 - [X]  See Folder Week1 , file report.txt
+
+## Week 2
+- [ ]  
