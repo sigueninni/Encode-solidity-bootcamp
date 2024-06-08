@@ -53,7 +53,7 @@ async function main() {
     console.log('\nChairPerson give vote right to :', delegatedAdress);
 
     console.log("\n********************************************");
-    console.log("\nStep 2 : casting votes");
+    console.log("\nStep 2 : casting votes(normal votes)");
     console.log("\n********************************************");
     //TODO
 
@@ -65,7 +65,12 @@ async function main() {
     console.log('\delegatedAdress votes');
 
 
-    console.log("\nStep 4 : querying results");
+    console.log("\n********************************************");
+    console.log("\nStep 4 : casting votes(delegated votes)");
+    console.log("\n********************************************");
+
+
+    console.log("\nStep 5 : querying results");
     //TODO
 
 }
