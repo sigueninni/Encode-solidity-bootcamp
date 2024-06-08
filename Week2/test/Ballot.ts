@@ -90,7 +90,7 @@ describe("Ballot", async () => {
             //check if voter has now voting weight
             const voter = await ballotContract.read.voters([voterAccount.account.address]);
             expect(voter[0]).to.eq(1n);
-            //check that delegatedVoter has no voting weight before delegation
+            //check that delegatedVoter has no voting weight before being added by chairperson and delegation
             let delegated = await ballotContract.read.voters([delegatedAccount.account.address]);
             expect(delegated[0]).to.eq(0n);
             //chairpersonAccount add delegated as voter
@@ -130,7 +130,13 @@ describe("Ballot", async () => {
     describe("when an account without right to vote interacts with the delegate function in the contract", async () => {
         // TODO
         it("should revert", async () => {
-            throw Error("Not implemented");
+            const { publicClient, chairpersonAccount, voterAccount, delegatedAccount, ballotContract } = await loadFixture(deployContractStateDelegate);
+            //Delegate from voter to another address before being added as a voter by chairPerson
+            await expect(
+                ballotContract.write.delegate([delegatedAccount.account.address], {
+                    account: voterAccount.account.address
+                })
+            ).to.be.rejectedWith("You have no right to vote");
         });
     });
 
