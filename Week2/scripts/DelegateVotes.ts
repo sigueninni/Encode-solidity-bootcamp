@@ -50,6 +50,28 @@ async function main() {
 
     console.log('\nChairPerson :', chairPersonAddress);
     console.log('\nChairPerson give vote right to :', voterAdress);
+    const hash = await chairPersonAddress.writeContract({
+        address: contractAddress,
+        abi,
+        functionName: "giveRightToVote",
+        args: [voterAdress],
+    });
+    console.log("Transaction hash:", hash);
+    console.log("Waiting for confirmations...");
+    const receipt = await publicClient.waitForTransactionReceipt({ hash });
+    console.log("Transaction Give vote right to Voter confirmed");
+
+
+    const weightVoter1 = (await publicClient.readContract({
+        address: contractAddress,
+        abi,
+        functionName: "voters",
+        args: [voterAdress],
+    })) as any;
+
+    console.log('\voterAdress weigth  :', weightVoter1);
+
+
     console.log('\nChairPerson give vote right to :', delegatedAdress);
 
     console.log("\n********************************************");
