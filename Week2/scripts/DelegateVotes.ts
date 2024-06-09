@@ -66,101 +66,101 @@ async function main() {
 
 
     //This needs to be done on script 'give voting rights'
-    console.log("\n********************************************");
-    console.log("\nStep 1 : give voting rights");
-    console.log("\n********************************************");
-    const chairPersonAddress = (await publicClient.readContract({
-        address: contractAddress,
-        abi,
-        functionName: "chairperson",
-        //args: [],
-    })) as any;
+    // console.log("\n********************************************");
+    // console.log("\nStep 1 : give voting rights");
+    // console.log("\n********************************************");
+    // const chairPersonAddress = (await publicClient.readContract({
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "chairperson",
+    //     //args: [],
+    // })) as any;
 
-    console.log('\nChairPerson :', chairPersonAddress);
-    console.log('\nChairPerson give vote right to :', voterAdress);
+    // console.log('\nChairPerson :', chairPersonAddress);
+    // console.log('\nChairPerson give vote right to :', voterAdress);
 
-    const hash = await chairPerson.writeContract({
-        address: contractAddress,
-        abi,
-        functionName: "giveRightToVote",
-        args: [voterAdress],
-    });
-    console.log("Transaction hash:", hash);
-    console.log("Waiting for confirmations...");
-    const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    console.log("Transaction Give vote right to Voter confirmed");
-
-
-    const weightVoter1 = (await publicClient.readContract({
-        address: contractAddress,
-        abi,
-        functionName: "voters",
-        args: [voterAdress],
-    })) as any;
-
-    console.log('\nvoterAdress weigth  :', weightVoter1);
+    // const hash = await chairPerson.writeContract({
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "giveRightToVote",
+    //     args: [voterAdress],
+    // });
+    // console.log("Transaction hash:", hash);
+    // console.log("Waiting for confirmations...");
+    // const receipt = await publicClient.waitForTransactionReceipt({ hash });
+    // console.log("Transaction Give vote right to Voter confirmed");
 
 
-    console.log('\nChairPerson give vote right to :', delegatedAdress);
+    // const weightVoter1 = (await publicClient.readContract({
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "voters",
+    //     args: [voterAdress],
+    // })) as any;
+
+    // console.log('\nvoterAdress weigth  :', weightVoter1);
 
 
-    const hashRightDeleg = await chairPerson.writeContract({
-        address: contractAddress,
-        abi,
-        functionName: "giveRightToVote",
-        args: [delegatedAdress],
-    });
-    console.log("Transaction hash:", hashRightDeleg);
-    console.log("Waiting for confirmations...");
-    const receiptRightDeleg = await publicClient.waitForTransactionReceipt({ hash: hashRightDeleg });
-    console.log("Transaction Give vote right to Voter confirmed");
+    // console.log('\nChairPerson give vote right to :', delegatedAdress);
 
 
-    const weightDeleg = (await publicClient.readContract({
-        address: contractAddress,
-        abi,
-        functionName: "voters",
-        args: [delegatedAdress],
-    })) as any;
+    // const hashRightDeleg = await chairPerson.writeContract({
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "giveRightToVote",
+    //     args: [delegatedAdress],
+    // });
+    // console.log("Transaction hash:", hashRightDeleg);
+    // console.log("Waiting for confirmations...");
+    // const receiptRightDeleg = await publicClient.waitForTransactionReceipt({ hash: hashRightDeleg });
+    // console.log("Transaction Give vote right to Voter confirmed");
 
-    console.log('\nDeleg weigth  before delegation:', weightDeleg);
+
+    // const weightDeleg = (await publicClient.readContract({
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "voters",
+    //     args: [delegatedAdress],
+    // })) as any;
+
+    // console.log('\nDeleg weigth  before delegation:', weightDeleg);
 
 
-    console.log("\n********************************************");
-    console.log("\nStep 2 : casting votes(normal votes)");
-    console.log("\n********************************************");
-    //TODO
+    // console.log("\n********************************************");
+    // console.log("\nStep 2 : casting votes(normal votes)");
+    // console.log("\n********************************************");
+    // //TODO
 
-    /*  const proposalIndex = 1; //TODO should be parameter of castvotes script
-     console.log("Proposal selected: ");
-     const proposal = (await publicClient.readContract({
-         address: contractAddress,
-         abi,
-         functionName: "proposals",
-         args: [BigInt(proposalIndex)],
-     })) as any[];
-     const name = hexToString(proposal[0], { size: 32 });
-     console.log("Voting to proposal", name);
-     console.log("Confirm? (Y/n)");
- 
-     const stdin = process.openStdin();
-     stdin.addListener("data", async function (d) {
-         if (d.toString().trim().toLowerCase() != "n") {
-             const hash = await voter.writeContract({
-                 address: contractAddress,
-                 abi,
-                 functionName: "vote",
-                 args: [BigInt(proposalIndex)],
-             });
-             console.log("Transaction hash:", hash);
-             console.log("Waiting for confirmations...");
-             const receipt = await publicClient.waitForTransactionReceipt({ hash });
-             console.log("Transaction confirmed");
-         } else {
-             console.log("Operation cancelled");
-         }
-         process.exit();
-     }); */
+    // /*  const proposalIndex = 1; //TODO should be parameter of castvotes script
+    //  console.log("Proposal selected: ");
+    //  const proposal = (await publicClient.readContract({
+    //      address: contractAddress,
+    //      abi,
+    //      functionName: "proposals",
+    //      args: [BigInt(proposalIndex)],
+    //  })) as any[];
+    //  const name = hexToString(proposal[0], { size: 32 });
+    //  console.log("Voting to proposal", name);
+    //  console.log("Confirm? (Y/n)");
+
+    //  const stdin = process.openStdin();
+    //  stdin.addListener("data", async function (d) {
+    //      if (d.toString().trim().toLowerCase() != "n") {
+    //          const hash = await voter.writeContract({
+    //              address: contractAddress,
+    //              abi,
+    //              functionName: "vote",
+    //              args: [BigInt(proposalIndex)],
+    //          });
+    //          console.log("Transaction hash:", hash);
+    //          console.log("Waiting for confirmations...");
+    //          const receipt = await publicClient.waitForTransactionReceipt({ hash });
+    //          console.log("Transaction confirmed");
+    //      } else {
+    //          console.log("Operation cancelled");
+    //      }
+    //      process.exit();
+    //  }); */
 
 
 
@@ -170,8 +170,6 @@ async function main() {
 
     console.log('\nVoterAdress delegates to : ', delegatedAdress);
     console.log('\ndelegatedAdress votes');
-
-
 
 
     const hashDeleg = await voter.writeContract({
@@ -196,14 +194,14 @@ async function main() {
     console.log('\nDeleg weigth  after delegation:', weightDelegAfter);
 
 
-    console.log("\n********************************************");
-    console.log("\nStep 4 : casting votes(delegated votes)");
-    console.log("\n********************************************");
-
-
-    //TODO
-    console.log("\nStep 5 : querying results");
-    //TODO
+    /*     console.log("\n********************************************");
+        console.log("\nStep 4 : casting votes(delegated votes)");
+        console.log("\n********************************************");
+    
+    
+        //TODO
+        console.log("\nStep 5 : querying results");
+        //TODO */
 
 }
 
