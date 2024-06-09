@@ -1,0 +1,29 @@
+Report Encode solidity Bootcamp Q2 2024 Week 2 :
+
+
+Deploying contract as As owner :
+npx ts-node --files ./scripts/DeployWithViem.ts "proposal1" "proposal2" "proposal3"
+
+Contract address on Sepolia :  0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a
+Transaction : https://sepolia.etherscan.io/address/0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a
+
+Functions calls :
+
+GiveRightToVote --> Hash --> 0xf1a78d9e2a238923aa244251fbe75feb522d8dbe9bd3c78633e953bf6793bd4b
+Transaction : https://sepolia.etherscan.io/tx/0xf1a78d9e2a238923aa244251fbe75feb522d8dbe9bd3c78633e953bf6793bd4b
+
+GiveRightToVote --> Hash --> 0x43181ed216cd95dc676e33f596a1651090bc786ad1a67e32127391554a26ec78
+Transaction : https://sepolia.etherscan.io/tx/0x43181ed216cd95dc676e33f596a1651090bc786ad1a67e32127391554a26ec78
+
+Vote --> Hash --> 0x8009c54b17b597dd54eeb61b2f1c7909c9ec2157b9b00b63b3fa06a613792634 
+Transaction : https://sepolia.etherscan.io/tx/0x8009c54b17b597dd54eeb61b2f1c7909c9ec2157b9b00b63b3fa06a613792634
+
+
+Reverts :
+
+as not owner :
+setText("saad") 	--> Hash --> 0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89 	--> Revert Fail with error 'Caller is not the owner' 
+Transaction : https://sepolia.etherscan.io/tx/0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89
+
+transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e --> Revert Fail with error 'Caller is not the owner' 
+Transaction : https://sepolia.etherscan.io/tx/0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e .
