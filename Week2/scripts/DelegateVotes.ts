@@ -40,14 +40,6 @@ async function main() {
         transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
     });
 
-    /*   const account = privateKeyToAccount(`0x${deployerPrivateKey}`);
-      const chairPerson = createWalletClient({
-          account,
-          chain: sepolia,
-          transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
-      });
-      console.log("ChairPerson address:", chairPerson.account.address); */
-
     const account = privateKeyToAccount(`0x${deployerPrivateKey}`);
     const chairPerson = createWalletClient({
         account,
