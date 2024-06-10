@@ -14,16 +14,6 @@ async function deployContract() {
     return { publicClient, deployer, otherAccount, ballotContract };
 }
 
-async function deployContractStateDelegate() {
-    const publicClient = await viem.getPublicClient();
-    const [chairpersonAccount, voterAccount, delegatedAccount] = await viem.getWalletClients();
-    const ballotContract = await viem.deployContract("Ballot", [
-        PROPOSALS.map((prop) => toHex(prop, { size: 32 })),
-    ]);
-
-    return { publicClient, chairpersonAccount, voterAccount, delegatedAccount, ballotContract };
-}
-
 describe("Ballot", async () => {
     describe("when the contract is deployed", async () => {
         it("has the provided proposals", async () => {
@@ -61,7 +51,7 @@ describe("Ballot", async () => {
             const { ballotContract, deployer, otherAccount } = await loadFixture(deployContract);
             await ballotContract.giveRightToVote(otherAccount.address);
             const voter = await ballotContract.voters(otherAccount.address)
-            exprect(voter.weight).to.eq(1);
+            expect(voter.weight).to.eq(1);
         });
         it("can not give right to vote for someone that has voted", async () => {
             const { ballotContract, deployer, otherAccount } = await loadFixture(deployContract);
