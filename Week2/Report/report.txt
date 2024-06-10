@@ -22,8 +22,17 @@ Transaction : https://sepolia.etherscan.io/tx/0x8009c54b17b597dd54eeb61b2f1c7909
 Reverts :
 
 as not owner :
-setText("saad") 	--> Hash --> 0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89 	--> Revert Fail with error 'Caller is not the owner' 
-Transaction : https://sepolia.etherscan.io/tx/0x606b606fd6dd8f412e980c10587c58797d681e962d6c39264f357a10f7f14b89
+GiveRightToVote 	--> Hash --> 0xf882f89acd506122b7399d841905e2972012004e124b4481179ab1710225bc42 	--> Revert Fail with error Fail with error 'Only chairperson can give right to vote.'
+Transaction : https://sepolia.etherscan.io/tx/0xf882f89acd506122b7399d841905e2972012004e124b4481179ab1710225bc42
 
-transferOwnership(0x05Bf201d89D821edAA71824220D16E3B1d3E777A) --> Hash --> 0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e --> Revert Fail with error 'Caller is not the owner' 
-Transaction : https://sepolia.etherscan.io/tx/0x313cfda2ececdda80e0d2cb3a54a45862edee94a752ecb2a08c38e8078aacc2e .
+Vote without weight vote
+vote --> Hash --> 0xdf83584c2914d389bc9ce7a5ba6c7d49e387f3d1386e801b571814bda6c80f21 --> Revert Fail with error ' 'Has no right to vote'
+Transaction : https://sepolia.etherscan.io/tx/0xdf83584c2914d389bc9ce7a5ba6c7d49e387f3d1386e801b571814bda6c80f21
+
+delegate without weight vote
+
+DELEG without weight vote
+deleg --> Hash --> 0x142191cc7e0934301c541942e396d63098218156ba757c99efa7309f4f378c8d --> Revert Fail with error ' 'Has no right to vote'
+Transaction : https://sepolia.etherscan.io/tx/0x142191cc7e0934301c541942e396d63098218156ba757c99efa7309f4f378c8d
+
+delegate after vote :
