@@ -6,10 +6,13 @@ const MINT_VALUE = 1000n;
 async function main() {
 
     const publicClient = await viem.getPublicClient();
-    const [deployer, acc1, acc2] = await viem.getWalletClients();
+    const [deployer, acc1, acc2, acc3] = await viem.getWalletClients();
+    //Deploy MyToken
     const contract = await viem.deployContract("MyToken");
     console.log(`Token contract deployed at ${contract.address}\n`);
 
+
+    //Giving Vote Tokens to acc1,acc2
     const mintTx = await contract.write.mint([acc1.account.address, MINT_VALUE]);
     await publicClient.waitForTransactionReceipt({ hash: mintTx });
     console.log(
@@ -22,6 +25,24 @@ async function main() {
         } has ${balanceBN.toString()} decimal units of MyToken\n`
     );
 
+
+    const mintTx2 = await contract.write.mint([acc2.account.address, MINT_VALUE]);
+    await publicClient.waitForTransactionReceipt({ hash: mintTx });
+    console.log(
+        `Minted ${MINT_VALUE.toString()} decimal units to account ${acc2.account.address
+        }\n`
+    );
+    const balanceBN2 = await contract.read.balanceOf([acc2.account.address]);
+    console.log(
+        `Account ${acc2.account.address
+        } has ${balanceBN.toString()} decimal units of MyToken\n`
+    );
+
+
+
+
+
+    //Checking vote power
     const votes = await contract.read.getVotes([acc1.account.address]);
     console.log(
         `Account ${acc1.account.address
@@ -60,6 +81,9 @@ async function main() {
         } has ${votes2AfterTransfer.toString()} units of voting power after receiving a transfer\n`
     );
 
+
+
+    //Historical vote power
     const lastBlockNumber = await publicClient.getBlockNumber();
     for (let index = lastBlockNumber - 1n; index > 0n; index--) {
         const pastVotes = await contract.read.getPastVotes([
