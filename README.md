@@ -18,7 +18,7 @@ Encode-solidity-bootcamp Group5 submissions
 - [X]  See Folder Week1 , file report.txt
 
 ## Week 2
-- [X]  [X]  See Folder Week2
+- [X]  See Folder Week2
 - Script are on folder 'scripts'
 - Report on folder 'report'
 - New tests were added to /test/Ballot.ts
@@ -32,3 +32,13 @@ Encode-solidity-bootcamp Group5 submissions
 - npx ts-node --files ./scripts/DelegateVotes.ts "0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a"  "0xB3B089134988b6CB5552e2C37CBa612eDd410f31" 
 - npx ts-node --files ./scripts/CastVote.ts "0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a" "0" 
 - npx ts-node --files ./scripts/QueryingResult.ts "0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a"
+
+## Week 3
+- [ ] See Folder Week3/token-votes/
+- Script are on folder 'scripts'
+- Report on folder 'report'
+- TokenizedBallot contract was completed
+
+### Test Scenario for scripts
+
+
