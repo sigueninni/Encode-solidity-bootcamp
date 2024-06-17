@@ -83,24 +83,6 @@ async function main() {
     });
     await publicClient.waitForTransactionReceipt({ hash: delegateTx23 });
 
-    //Self delegation acc2  --> do we need it if we delegate to other?
-    /*     const votes2 = await contract.read.getVotes([acc1.account.address]);
-        console.log(
-            `Account ${acc1.account.address
-            } has ${votes.toString()} units of voting power before self delegating\n`
-        );
-    
-        const delegateTx2 = await contract.write.delegate([acc1.account.address], {
-            account: acc1.account,
-        });
-        await publicClient.waitForTransactionReceipt({ hash: delegateTx2 });
-        const votesAfter2 = await contract.read.getVotes([acc1.account.address]);
-        console.log(
-            `Account ${acc1.account.address
-            } has ${votesAfter.toString()} units of voting power after self delegating\n`
-        );
-     */
-
     console.log("\n********************************************");
     console.log("\nStep 4 : Checking vote power  ");
     console.log("\n********************************************");
@@ -114,7 +96,7 @@ async function main() {
     const votesAfter2 = await contract.read.getVotes([acc2.account.address]);
     console.log(
         `Account2 ${acc2.account.address
-        } has ${votesAfter.toString()} units of voting power after  delegating to Account3 ${acc3.account.address
+        } has ${votesAfter2.toString()} units of voting power after  delegating to Account3 ${acc3.account.address
         }\n`
     );
 
@@ -126,61 +108,61 @@ async function main() {
     );
 
 
-    console.log("\n********************************************");
-    console.log("\nStep 5 : Deploy TokenizedBallot  ");
-    console.log("\n********************************************");
-    const lastBlockNumber = await publicClient.getBlockNumber();
-    const contractTokenizedBallot = await viem.deployContract("TokenizedBallot", [
-        PROPOSALS.map((prop) => toHex(prop, { size: 32 })), contract.address, lastBlockNumber
-    ]);
-    console.log(`TokenizedBallot contract deployed at ${contractTokenizedBallot.address}\n`);
+    // console.log("\n********************************************");
+    // console.log("\nStep 5 : Deploy TokenizedBallot  ");
+    // console.log("\n********************************************");
+    // const lastBlockNumber = await publicClient.getBlockNumber();
+    // const contractTokenizedBallot = await viem.deployContract("TokenizedBallot", [
+    //     PROPOSALS.map((prop) => toHex(prop, { size: 32 })), contract.address, lastBlockNumber
+    // ]);
+    // console.log(`TokenizedBallot contract deployed at ${contractTokenizedBallot.address}\n`);
 
 
-    console.log("\n********************************************");
-    console.log("\nStep 6 : Cast votes  ");
-    console.log("\n********************************************");
-    //Cast votes acc2 and acc3
-    const vote1Tx = await contractTokenizedBallot.write.vote([1n, MINT_VALUE / 2n], {
-        account: acc1.account,
-    });
-    await publicClient.waitForTransactionReceipt({ hash: vote1Tx });
-    console.log(
-        `Account1 ${acc1.account.address
-        } has voted for proposal 2 with  ${MINT_VALUE / 2n
-        } power voting \n`
-    );
+    // console.log("\n********************************************");
+    // console.log("\nStep 6 : Cast votes  ");
+    // console.log("\n********************************************");
+    // //Cast votes acc1 and acc3
+    // const vote1Tx = await contractTokenizedBallot.write.vote([1n, MINT_VALUE / 2n], {
+    //     account: acc1.account,
+    // });
+    // await publicClient.waitForTransactionReceipt({ hash: vote1Tx });
+    // console.log(
+    //     `Account1 ${acc1.account.address
+    //     } has voted for proposal 2 with  ${MINT_VALUE / 2n
+    //     } power voting \n`
+    // );
 
 
-    /*     const vote2Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
-            account: acc2.account,
-        });
-        await publicClient.waitForTransactionReceipt({ hash: vote2Tx });
-        console.log(
-            `Account2 ${acc2.account.address
-            } has voted for proposal 2 with  ${MINT_VALUE
-            } power voting \n`
-        ); */
+    // /*     const vote2Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
+    //         account: acc2.account,
+    //     });
+    //     await publicClient.waitForTransactionReceipt({ hash: vote2Tx });
+    //     console.log(
+    //         `Account2 ${acc2.account.address
+    //         } has voted for proposal 2 with  ${MINT_VALUE
+    //         } power voting \n`
+    //     ); */
 
 
 
-    const vote3Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
-        account: acc3.account,
-    });
-    await publicClient.waitForTransactionReceipt({ hash: vote3Tx });
-    console.log(
-        `Account1 ${acc3.account.address
-        } has voted for proposal 1 with  ${MINT_VALUE
-        } power voting \n`
-    );
+    // const vote3Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
+    //     account: acc3.account,
+    // });
+    // await publicClient.waitForTransactionReceipt({ hash: vote3Tx });
+    // console.log(
+    //     `Account3 ${acc3.account.address
+    //     } has voted for proposal 1 with  ${MINT_VALUE
+    //     } power voting \n`
+    // );
 
-    console.log("\n********************************************");
-    console.log("\nStep 7 : Querying results  ");
-    console.log("\n********************************************");
+    // console.log("\n********************************************");
+    // console.log("\nStep 7 : Querying results  ");
+    // console.log("\n********************************************");
 
 
-    const winingProposal = await contractTokenizedBallot.read.winnerName();
-    const nameWiningProposal = hexToString(winingProposal, { size: 32 });
-    console.log("wining proposal:", nameWiningProposal);
+    // const winingProposal = await contractTokenizedBallot.read.winnerName();
+    // const nameWiningProposal = hexToString(winingProposal, { size: 32 });
+    // console.log("wining proposal:", nameWiningProposal);
 
 
 
