@@ -1,0 +1,42 @@
+Report Encode solidity Bootcamp Q3 2024 Week 2 :
+
+
+Deploying  MyToken contract as As owner :
+
+Contract address on Sepolia :  
+Transaction : https://sepolia.etherscan.io/address/0x41c7a5dfc7094e2c81fcd64b0bac79d41c98987b
+
+
+Deploying  TokenizedBallot contract as As owner :
+Transaction : https://sepolia.etherscan.io/address/0x7b9fe0db13b5bde91b4373cc5d4e3f72a114d15d
+
+
+
+Functions calls :
+
+Mint to acc1 : 0x7c2b6ed176e974b915b3b57e4d13caf552ea6489d8362268a75aa5c6a9a41c3a
+https://sepolia.etherscan.io/tx/0x7c2b6ed176e974b915b3b57e4d13caf552ea6489d8362268a75aa5c6a9a41c3a
+
+Mint to acc2 :0xf83376df7a10f41ab16576b1d548ef88ee632865698d6c8c552cc55f26a7f11f
+https://sepolia.etherscan.io/tx/0x7c2b6ed176e974b915b3b57e4d13caf552ea6489d8362268a75aa5c6a9a41c3a
+
+self Delegate :0x3978fc80a405e3007fde4d63c2499913dc99aea4927109dda1ef7130c2ab6aa5
+https://sepolia.etherscan.io/tx/0x3978fc80a405e3007fde4d63c2499913dc99aea4927109dda1ef7130c2ab6aa5
+
+Delegate acc2 to acc3 :0x0744d525636ba9a0c95c73f5519aba10cb84577c0e3f05a3e6c974e0ab809d8c
+https://sepolia.etherscan.io/tx/0x0744d525636ba9a0c95c73f5519aba10cb84577c0e3f05a3e6c974e0ab809d8c
+
+Vote acc 1 :  0x930aae65f1332b9f9d53a597fe3166e8259bdbe52b873f30263bbfed013b4447
+https://sepolia.etherscan.io/tx/0x930aae65f1332b9f9d53a597fe3166e8259bdbe52b873f30263bbfed013b4447
+
+Vote acc 3 : 0xd2fc210bb948e1dba23073a546f48a219e3e022204154f75f65cc0ae5cc82179
+https://sepolia.etherscan.io/tx/0xd2fc210bb948e1dba23073a546f48a219e3e022204154f75f65cc0ae5cc82179
+
+
+
+Reverts :
+
+mint :0xd93ee2b300948f0c02e10ff32a42fb0a8155df6d2b067e1866f60cfb5760026e  --> out of gas
+https://sepolia.etherscan.io/tx/0xd93ee2b300948f0c02e10ff32a42fb0a8155df6d2b067e1866f60cfb5760026e 
+
+

@@ -34,11 +34,12 @@ Encode-solidity-bootcamp Group5 submissions
 - npx ts-node --files ./scripts/QueryingResult.ts "0xd9d7b77ed2dc6e3ab1cf648e0c4f20b76d63989a"
 
 ## Week 3
-- [ ] See Folder Week3/token-votes/
+- [X] See Folder Week3/token-votes/
 - Script are on folder 'scripts'
 - Report on folder 'report'
 - TokenizedBallot contract was completed
 
 ### Test Scenario for scripts
-
+All script are on same file as we are using hardhat to deploy and parameters possible with deploy with Hardhat.
+- npx hardhat run .\scripts\testTokens.ts --network sepolia
 

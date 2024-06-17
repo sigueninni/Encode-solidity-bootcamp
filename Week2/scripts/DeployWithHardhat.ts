@@ -1,5 +1,6 @@
 import { viem } from "hardhat";
 import { toHex, hexToString, formatEther } from "viem";
+import { privateKeyToAccount } from "viem/accounts";
 
 const PROPOSALS = ["Proposal 1", "Proposal 2", "Proposal 3"];
 
