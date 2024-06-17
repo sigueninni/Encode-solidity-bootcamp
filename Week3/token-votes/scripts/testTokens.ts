@@ -108,76 +108,98 @@ async function main() {
     );
 
 
-    // console.log("\n********************************************");
-    // console.log("\nStep 5 : Deploy TokenizedBallot  ");
-    // console.log("\n********************************************");
-    // const lastBlockNumber = await publicClient.getBlockNumber();
-    // const contractTokenizedBallot = await viem.deployContract("TokenizedBallot", [
-    //     PROPOSALS.map((prop) => toHex(prop, { size: 32 })), contract.address, lastBlockNumber
-    // ]);
-    // console.log(`TokenizedBallot contract deployed at ${contractTokenizedBallot.address}\n`);
+    console.log("\n********************************************");
+    console.log("\nStep 5 : Deploy TokenizedBallot  ");
+    console.log("\n********************************************");
+    const lastBlockNumber = await publicClient.getBlockNumber();
+    const contractTokenizedBallot = await viem.deployContract("TokenizedBallot", [
+        PROPOSALS.map((prop) => toHex(prop, { size: 32 })), contract.address, lastBlockNumber
+    ]);
+    console.log(`TokenizedBallot contract deployed at ${contractTokenizedBallot.address}\n`);
 
 
-    // console.log("\n********************************************");
-    // console.log("\nStep 6 : Cast votes  ");
-    // console.log("\n********************************************");
-    // //Cast votes acc1 and acc3
-    // const vote1Tx = await contractTokenizedBallot.write.vote([1n, MINT_VALUE / 2n], {
-    //     account: acc1.account,
-    // });
-    // await publicClient.waitForTransactionReceipt({ hash: vote1Tx });
-    // console.log(
-    //     `Account1 ${acc1.account.address
-    //     } has voted for proposal 2 with  ${MINT_VALUE / 2n
-    //     } power voting \n`
-    // );
+    console.log("\n********************************************");
+    console.log("\nStep 6 : Cast votes  ");
+    console.log("\n********************************************");
+    //Cast votes acc1 and acc3
+    const vote1Tx = await contractTokenizedBallot.write.vote([1n, MINT_VALUE / 2n], {
+        account: acc1.account,
+    });
+    await publicClient.waitForTransactionReceipt({ hash: vote1Tx });
+    console.log(
+        `Account1 ${acc1.account.address
+        } has voted for proposal 2 with  ${MINT_VALUE / 2n
+        } power voting \n`
+    );
 
 
-    // /*     const vote2Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
-    //         account: acc2.account,
-    //     });
-    //     await publicClient.waitForTransactionReceipt({ hash: vote2Tx });
-    //     console.log(
-    //         `Account2 ${acc2.account.address
-    //         } has voted for proposal 2 with  ${MINT_VALUE
-    //         } power voting \n`
-    //     ); */
-
-
-
-    // const vote3Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
-    //     account: acc3.account,
-    // });
-    // await publicClient.waitForTransactionReceipt({ hash: vote3Tx });
-    // console.log(
-    //     `Account3 ${acc3.account.address
-    //     } has voted for proposal 1 with  ${MINT_VALUE
-    //     } power voting \n`
-    // );
-
-    // console.log("\n********************************************");
-    // console.log("\nStep 7 : Querying results  ");
-    // console.log("\n********************************************");
-
-
-    // const winingProposal = await contractTokenizedBallot.read.winnerName();
-    // const nameWiningProposal = hexToString(winingProposal, { size: 32 });
-    // console.log("wining proposal:", nameWiningProposal);
+    /*     const vote2Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
+            account: acc2.account,
+        });
+        await publicClient.waitForTransactionReceipt({ hash: vote2Tx });
+        console.log(
+            `Account2 ${acc2.account.address
+            } has voted for proposal 2 with  ${MINT_VALUE
+            } power voting \n`
+        ); */
 
 
 
-    /*     //Historical vote power
-        const lastBlockNumber = await publicClient.getBlockNumber();
-        for (let index = lastBlockNumber - 1n; index > 0n; index--) {
-            const pastVotes = await contract.read.getPastVotes([
-                acc1.account.address,
-                index,
-            ]);
-            console.log(
-                `Account ${acc1.account.address
-                } had ${pastVotes.toString()} units of voting power at block ${index}\n`
-            );
-        } */
+    const vote3Tx = await contractTokenizedBallot.write.vote([0n, MINT_VALUE], {
+        account: acc3.account,
+    });
+    await publicClient.waitForTransactionReceipt({ hash: vote3Tx });
+    console.log(
+        `Account3 ${acc3.account.address
+        } has voted for proposal 1 with  ${MINT_VALUE
+        } power voting \n`
+    );
+
+    console.log("\n********************************************");
+    console.log("\nStep 7 : Querying results  ");
+    console.log("\n********************************************");
+
+
+    const winingProposal = await contractTokenizedBallot.read.winnerName();
+    const nameWiningProposal = hexToString(winingProposal, { size: 32 });
+    console.log("wining proposal:", nameWiningProposal);
+
+
+
+    console.log("\n********************************************");
+    console.log("\nExtra Step  : Check Historical vote power  ");
+    console.log("\n********************************************");
+
+
+    const lastBlockNumber2 = await publicClient.getBlockNumber();
+    for (let index = lastBlockNumber2 - 1n; index > 0n; index--) {
+        const pastVotes = await contract.read.getPastVotes([
+            acc1.account.address,
+            index,
+        ]);
+        console.log(
+            `Account1 ${acc1.account.address
+            } had ${pastVotes.toString()} units of voting power at block ${index}\n`
+        );
+
+        const pastVotes2 = await contract.read.getPastVotes([
+            acc2.account.address,
+            index,
+        ]);
+        console.log(
+            `Account2 ${acc2.account.address
+            } had ${pastVotes2.toString()} units of voting power at block ${index}\n`
+        );
+
+        const pastVotes3 = await contract.read.getPastVotes([
+            acc3.account.address,
+            index,
+        ]);
+        console.log(
+            `Account3 ${acc3.account.address
+            } had ${pastVotes3.toString()} units of voting power at block ${index}\n`
+        );
+    }
 
 }
 
@@ -188,27 +210,3 @@ main().catch((err) => {
 
 
 
-
-
-/* const transferTx = await contract.write.transfer(
-    [acc2.account.address, MINT_VALUE / 2n],
-    {
-        account: acc1.account,
-    }
-);
-await publicClient.waitForTransactionReceipt({ hash: transferTx });
-const votes1AfterTransfer = await contract.read.getVotes([
-    acc1.account.address,
-]);
-console.log(
-    `Account ${acc1.account.address
-    } has ${votes1AfterTransfer.toString()} units of voting power after transferring\n`
-);
-const votes2AfterTransfer = await contract.read.getVotes([
-    acc2.account.address,
-]);
-console.log(
-    `Account ${acc2.account.address
-    } has ${votes2AfterTransfer.toString()} units of voting power after receiving a transfer\n`
-);
-*/
