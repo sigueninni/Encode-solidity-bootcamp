@@ -3,7 +3,6 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { Address } from "~~/components/scaffold-eth";
 import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
