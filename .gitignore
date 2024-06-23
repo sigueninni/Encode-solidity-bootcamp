@@ -1,5 +1,7 @@
 # dependencies
-node_modules
+/dist
+/node_modules
+/build
 
 # yarn
 .yarn/*
