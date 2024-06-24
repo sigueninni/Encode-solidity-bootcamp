@@ -44,6 +44,6 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
-    "vercel": "latest"
+    "vercel": "^34.2.7"
   }
 }

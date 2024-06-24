@@ -12761,7 +12761,7 @@ __metadata:
   dependencies:
     husky: ^8.0.1
     lint-staged: ^13.0.3
-    vercel: latest
+    vercel: ^34.2.7
   languageName: unknown
   linkType: soft
 
@@ -14668,7 +14668,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vercel@npm:latest":
+"vercel@npm:^34.2.7":
   version: 34.2.7
   resolution: "vercel@npm:34.2.7"
   dependencies:
